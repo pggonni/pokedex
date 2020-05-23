@@ -25,7 +25,7 @@
         </div>
     </nav>
         <div x-data="data()" x-init="init()">
-            <template  x-for="pokemon in pokeData" $nextTick(() => { console.log($event.target.innerText) });>
+            <template  x-for="pokemon in pokeData">
 
                 <div 
                     x-show="pokemon.modalShow === true" 
