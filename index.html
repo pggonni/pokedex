@@ -1,69 +1,46 @@
-// let allInfo;
-
-// async function gen1Pokemon() {
-//     let gen1 = await axios.get('https://pokeapi.co/api/v2/generation/1');
-//     let allPoke = gen1.data.pokemon_species;
-//     return printPokemon(allPoke)
-// }
-
-// async function printPokemon(results) {
-//     let allGen1 = [];
-//     for (let i = results.length-1; i > 0; i--){
-//         let pokeURL = results[i].url
-//         let getInfo = axios.get(pokeURL)
-//         allGen1.push(getInfo)
-//     };
-//     allInfo = await Promise.all(allGen1);
-//     return allInfo;
-// }
-
-// let pokeData = gen1Pokemon().then(() => {
-//     return allInfo
-// });
-
-
-// //-----------
-
-async function gen1Pokemon() {
-    let gen1 = await axios.get('https://pokeapi.co/api/v2/generation/1');
-    let allPoke = gen1.data.pokemon_species;
-    return printPokemon(allPoke);
-}
-
-async function printPokemon(results) {
-    console.log(results)
-    let allGen1 = [];
-    for (let i = results.length - 1; i >= 0; i--){ 
-        let pokemonName = results[i].name;
-        let getInfo = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-        allGen1.push(getInfo.data);
-    };
-    console.log(allGen1)
-    return allGen1;
-}
-
-function data() {
-  return {
-    pokeData: [],
-    init() {
-      gen1Pokemon().then((resolve) => {
-        this.pokeData = resolve;
-      });
-    }
-  }
-}
-
-//--------------------
-
-/* Make an array of objects to style the types
-    types:[
-      grass: {
-        bgColor: light-green,
-        textColor: dark-green
-      },
-      fire: {
-        bgColor: light-red,
-        textColor: dark-red
-      }
-    ]
-*/
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="pokedex.css">
+    <script src="/pokedex.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <title>Pokedex</title>
+</head>
+<body class="font-sans bg-gray-200 text-gray-800">
+    <div class="container w-full max-w-screen-xl mx-auto">
+        <div x-data="data()" x-init="init()" class="flex flex-wrap md:p-8 p-4">
+            <template x-for="pokemon in pokeData">
+                <div class="xl:w-1/6 lg:w-1/5 md:w-1/4 sm:w-1/3 w-1/2 md:p-4 p-2">
+                    <div class="shadow-md bg-white rounded-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all ease-in-out duration-300">
+                        <div class="flex justify-center items-center bg-gray-100 border-b border-gray-200 relative">
+                            <p x-text="`#${pokemon.order}`" class="absolute top-0 left-0 text-gray-200 text-6xl font-bold -ml-2 -mt-8"></p>
+                            <img :src="pokemon.sprites.front_default" alt="" class="relative">
+                        </div>
+                        <div class="p-4">
+                            <div class="flex">
+                                <div 
+                                    x-text="pokemon.types[0].type.name" 
+                                    class="capitalize rounded px-1 py-0 mb-2 mr-2 text-xs text-gray-700 bg-gray-200"
+                                    :class="pokemon.types[0].type.name"
+                                ></div>
+                                <template x-if="pokemon.types.length == 2">
+                                    <div 
+                                        x-text="pokemon.types[1].type.name" 
+                                        class="capitalize rounded px-1 py-0 mb-2 mr-2 text-xs text-gray-700 bg-gray-200"
+                                        :class="pokemon.types[1].type.name"
+                                    ></div>
+                                </template>
+                            </div>
+                            <h3 x-text="pokemon.name" class="capitalize text-xl font-semibold"></h3>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
