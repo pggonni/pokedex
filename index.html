@@ -28,19 +28,14 @@
             <template  x-for="pokemon in pokeData">
 
                 <div 
-                    x-show="pokemon.modalShow === true" 
+                    x-show="pokemon.modalShow" 
                     class="fixed bg-gray-700 bg-opacity-75 w-screen h-screen z-30 flex items-center justify-center p-8"
                 >
                     <div @click.away="pokemon.modalShow = false" class="bg-white rounded-lg overflow-hidden md:max-w-lg w-full relative">
                         
                         <div class="flex justify-center items-center w-full bg-gray-200 border-b border-gray-300 relative">
                             <img 
-                                x-show="pokemon.spriteFront === true"
-                                :src="pokemon.sprites.front_default"
-                                class="h-40" alt="">
-                            <img 
-                                x-show="pokemon.spriteFront === false"
-                                :src="pokemon.sprites.back_default" 
+                                :src="pokemon.spriteFront ? pokemon.sprites.front_default : pokemon.sprites.back_default"
                                 class="h-40" alt="">
                             <div @click="pokemon.spriteFront = !pokemon.spriteFront" class="absolute bottom-0 mx-auto p-2 -mb-4 cursor-pointer border border-gray-300 bg-white rounded-full hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: currentColor" class="h-4"><path d="M19.91,15.51H15.38a1,1,0,0,0,0,2h2.4A8,8,0,0,1,4,12a1,1,0,0,0-2,0,10,10,0,0,0,16.88,7.23V21a1,1,0,0,0,2,0V16.5A1,1,0,0,0,19.91,15.51ZM15,12a3,3,0,1,0-3,3A3,3,0,0,0,15,12Zm-4,0a1,1,0,1,1,1,1A1,1,0,0,1,11,12ZM12,2A10,10,0,0,0,5.12,4.77V3a1,1,0,0,0-2,0V7.5a1,1,0,0,0,1,1h4.5a1,1,0,0,0,0-2H6.22A8,8,0,0,1,20,12a1,1,0,0,0,2,0A10,10,0,0,0,12,2Z"/></svg>
