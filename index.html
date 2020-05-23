@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="pokedex.css">
     <script src="/pokedex.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
+    <script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
     <title>Pokedex</title>
 </head>
 <body class="font-sans bg-gray-200 text-gray-800">
@@ -19,23 +19,21 @@
             <div class="w-64 max-w-full">
                 <form id="filters" class="w-full flex relative items-center text-gray-800">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 absolute ml-2" style="fill: currentColor"><path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/></svg>
-                    <input type="search" id="search" placeholder="Try &quot;fire&quot;" class="border border-gray-200 bg-gray-200 w-full rounded-lg p-1 pl-8 placeholder-gray-500">
+                    <input type="search" id="quicksearch" placeholder="Try &quot;fire&quot;" class="border border-gray-200 bg-gray-200 w-full rounded-lg p-1 pl-8 placeholder-gray-500">
                 </form>
             </div>
         </div>
     </nav>
-        <div x-data="data()" x-init="init()">
+        <div x-data="data()" x-init="init()" class="pokemon-grid">
             <template  x-for="pokemon in pokeData">
-
                 <div 
                     x-show="pokemon.modalShow" 
                     class="fixed bg-gray-700 bg-opacity-75 w-screen h-screen z-30 flex items-center justify-center p-8"
                 >
                     <div @click.away="pokemon.modalShow = false" class="bg-white rounded-lg overflow-hidden md:max-w-lg w-full relative">
-                        
                         <div class="flex justify-center items-center w-full bg-gray-200 border-b border-gray-300 relative">
                             <img 
-                                :src="pokemon.spriteFront ? pokemon.sprites.front_default : pokemon.sprites.back_default"
+                                :src="!pokemon.spriteFront ? pokemon.sprites.front_default : pokemon.sprites.back_default"
                                 class="h-40" alt="">
                             <div @click="pokemon.spriteFront = !pokemon.spriteFront" class="absolute bottom-0 mx-auto p-2 -mb-4 cursor-pointer border border-gray-300 bg-white rounded-full hover:bg-gray-100">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="fill: currentColor" class="h-4"><path d="M19.91,15.51H15.38a1,1,0,0,0,0,2h2.4A8,8,0,0,1,4,12a1,1,0,0,0-2,0,10,10,0,0,0,16.88,7.23V21a1,1,0,0,0,2,0V16.5A1,1,0,0,0,19.91,15.51ZM15,12a3,3,0,1,0-3,3A3,3,0,0,0,15,12Zm-4,0a1,1,0,1,1,1,1A1,1,0,0,1,11,12ZM12,2A10,10,0,0,0,5.12,4.77V3a1,1,0,0,0-2,0V7.5a1,1,0,0,0,1,1h4.5a1,1,0,0,0,0-2H6.22A8,8,0,0,1,20,12a1,1,0,0,0,2,0A10,10,0,0,0,12,2Z"/></svg>
@@ -95,7 +93,7 @@
                     </div> -->
                     <div class="flex flex-wrap md:p-8 p-4">
                         <template x-for="pokemon in pokeData">
-                            <div @click="pokemon.modalShow = true" class=" lg:w-1/4 md:w-1/3 w-1/2 lg:p-4 p-2">
+                            <div @click="pokemon.modalShow = true" class="lg:w-1/4 md:w-1/3 w-1/2 lg:p-4 p-2 pokemon-card">
                                 <div class="shadow-md bg-white rounded-lg overflow-hidden cursor-pointer hover:shadow-xl transition-all ease-in-out duration-300 p-4">
                                     <div class="flex justify-center items-center bg-gray-100 rounded-t relative overflow-hidden">
                                         <p x-text="`#${pokemon.order}`" class="absolute top-0 left-0 text-gray-400 text-sm font-bold ml-2 mt-1 pokemon-order-numbe"></p>
@@ -126,19 +124,5 @@
             </div>
         </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-        var elem = document.querySelector('.grid');
-        var iso = new Isotope( elem, {
-        // options
-        itemSelector: '.grid-item',
-        layoutMode: 'fitRows'
-        });
-
-        // element argument can be a selector string
-        //   for an individual element
-        var iso = new Isotope( '.grid', {
-        // options
-        });
-    </script>
 </body>
 </html>

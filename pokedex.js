@@ -10,13 +10,14 @@ async function printPokemon(results) {
     for (let i = results.length - 1; i >= 123; i--){ 
         let pokemonName = results[i].name;
         let getInfo = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-        let stateInfo = {modalShow: false, spriteFront: true};
-        Object.assign(getInfo, stateInfo);
+        // let stateInfo = {modalShow: false, spriteFront: true};
+        // Object.assign(getInfo, stateInfo);
         allGen1.push(getInfo.data);
     };
     console.log(allGen1)
     return allGen1;
 }
+
 
 function data() {
   return {
