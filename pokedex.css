@@ -53,5 +53,84 @@
 }
 .dragon{
     color: rgb(4, 0, 58);
-    background-color: rgb(223, 211, 255);
+    background-color: rgb(201, 181, 255);
 }
+.fairy{
+    color: rgb(228, 0, 209);
+    background-color: rgb(255, 245, 254);
+}
+
+/* 
+With borders:
+.fire{
+    color: rgb(204, 0, 0);
+    border-color: rgb(204, 0, 0);
+    background-color: rgb(255, 230, 230);
+}
+.water{
+    color: rgb(0, 52, 110);
+    border-color: rgb(0, 52, 110);
+    background-color: rgb(148, 243, 255);
+}
+.electric{
+    color: rgb(71, 55, 0);
+    border-color: rgb(71, 55, 0);
+    background-color: rgb(243, 255, 81);
+}
+.grass{
+    color: rgb(0, 61, 0);
+    border-color: rgb(0, 61, 0);
+    background-color: rgb(220, 255, 211);
+}
+.ice{
+    color: rgb(0, 162, 255);
+    border-color: rgb(0, 162, 255);
+    background-color: rgb(245, 245, 255);
+}
+.fighting{
+    color: rgb(58, 16, 0);
+    border-color: rgb(58, 16, 0);
+    background-color: rgb(255, 214, 197);
+}
+.poison{
+    color: rgb(7, 80, 0);
+    border-color: rgb(7, 80, 0);
+    background-color: rgb(238, 223, 255);
+}
+.ground{
+    color: rgb(34, 20, 0);
+    border-color: rgb(34, 20, 0);
+    background-color: rgb(226, 194, 145);
+}
+.flying{
+    color: rgb(0, 37, 139);
+    border-color: rgb(0, 37, 139);
+    background-color: rgb(230, 242, 255);
+}
+.psychic{
+    color: rgb(23, 0, 107);
+    border-color: rgb(23, 0, 107);
+    background-color: rgb(255, 211, 245);
+    
+}
+.bug{
+    color: rgb(41, 56, 0);
+    border-color: rgb(41, 56, 0);
+    background-color: rgb(239, 255, 195);
+}
+.rock{
+    color: rgb(46, 43, 36);
+    border-color: rgb(46, 43, 36);
+    background-color: rgb(224, 218, 203);
+}
+.ghost{
+    color: rgb(229, 209, 255);
+    border-color: rgb(229, 209, 255);
+    background-color: rgb(58, 0, 97);
+}
+.dragon{
+    color: rgb(4, 0, 58);
+    border-color: rgb(4, 0, 58);
+    background-color: rgb(201, 181, 255);
+}
+*/
